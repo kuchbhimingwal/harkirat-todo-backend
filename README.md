@@ -1,8 +1,16 @@
-# React + Vite
+## simple todo with backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+this project contains a simple todo application
+this app have following features
+*user can signup 
 
-Currently, two official plugins are available:
+*user can singin
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*user can create a todo
+
+*user can see their todo
+
+*user can mark a todo as done
+
+// initialize a node project
+// put a package.json
