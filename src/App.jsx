@@ -10,7 +10,7 @@ function App() {
       const json = await todo.json();
       setTodos(json.todoList);
     })
-  },[])
+  },[todos])
 
   return (
     <div>
