@@ -1,12 +1,18 @@
 import React from 'react'
 
-function Todos() {
+function Todos({todos}) {
   return (
     <div>
-      <h1>Go to gym</h1>
-      <h2>You need to go to the gym</h2>
+      {todos.map((todo)=>(
+        <div>
+          <h1>{todo.title}</h1>
+          <h2>{todo.description}</h2>
 
-      <button>Mark as complete</button>
+          <button key={todo._id} onClick={()=>{
+            fetch('http://localhost:3000/todo')
+          }}>{todo.completed == true ? "completed" : "mark as completed"}</button>
+        </div>
+      ))}
     </div>
   )
 }
