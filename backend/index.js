@@ -25,8 +25,8 @@ app.get("/todos", (req, res)=>{
 })
 
 app.put("/completed", (req, res)=>{
-  const createPayload = req.body;
-  const parsePayload = updateTodo.safeParse(createPayload);
+  const updatePayload = req.body;
+  const parsePayload = updateTodo.safeParse(updatePayload);
   if(!parsePayload.success){
     res.status(411).json({
       msg: "wrong in put"
