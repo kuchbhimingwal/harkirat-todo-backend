@@ -3,12 +3,13 @@
 
 const express = require("express");
 const { createTodo, updateTodo } = require("./types");
+const { todo } = require("./db/db");
 const app = express();
 
 app.use(express.json())
 
 
-app.post("/todo", (req, res)=>{
+app.post("/todo", async (req, res)=>{
   const createPayload = req.body;
   const parsePayload = createTodo.safeParse(createPayload);
   if(!parsePayload.success){
@@ -18,13 +19,25 @@ app.post("/todo", (req, res)=>{
     return;
   }
   // put in mongodb
+  await todo.create({
+    title: createPayload.title,
+    description: createPayload.description,
+    completed: false
+  })
+
+  res.json({
+    msg: "todo created"
+  })
 })
 
-app.get("/todos", (req, res)=>{
-
+app.get("/todos", async (req, res)=>{
+  const todoList = await todo.find({});
+  res.json({
+    todoList
+  })
 })
 
-app.put("/completed", (req, res)=>{
+app.put("/completed", async (req, res)=>{
   const updatePayload = req.body;
   const parsePayload = updateTodo.safeParse(updatePayload);
   if(!parsePayload.success){
@@ -33,5 +46,16 @@ app.put("/completed", (req, res)=>{
     })
     return;
   }
+  await todo.updateOne({
+    _id: req.body.id
+  }, {
+    completed: true
+  })
+
+  res.json({
+    msg: "updated successfully"
+  })
   // mark as complete in mongon db
 })
+
+app.listen(3000);
